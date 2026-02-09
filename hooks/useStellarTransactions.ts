@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { stellarServer } from "@/lib/stellarServer";
-import type { ServerApi } from "@stellar/stellar-sdk";
+import { Horizon } from "@stellar/stellar-sdk";
 
 const LIMIT = 10;
 
@@ -28,7 +28,7 @@ export function useStellarTransactions(publicKey: string | null) {
         .call();
 
       const items: TxItem[] = (
-        page as ServerApi.CollectionPage<ServerApi.TransactionRecord>
+        page as Horizon.ServerApi.CollectionPage<Horizon.ServerApi.TransactionRecord>
       ).records.map((tx) => ({
         id: tx.id,
         created_at: tx.created_at,
